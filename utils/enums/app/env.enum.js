@@ -1,0 +1,28 @@
+import { config } from "dotenv";
+
+config();
+
+const {
+  APP_PORT,
+  SENDGRID_API_KEY,
+  SENDGRID_VERIFIED_SENDER,
+  CRYPTO_COMPARE_URL,
+  CRYPTO_COMPARE_API_KEY,
+} = process.env;
+
+const ENV = {
+  APP: {
+    API_PATH: "/api",
+    PORT: APP_PORT,
+  },
+  SENDGRID: {
+    API_KEY: SENDGRID_API_KEY,
+    VERIFIED_SENDER: SENDGRID_VERIFIED_SENDER,
+  },
+  CRYPTO_COMPARE: {
+    URL: CRYPTO_COMPARE_URL,
+    API_KEY: CRYPTO_COMPARE_API_KEY,
+  },
+};
+
+export { ENV };

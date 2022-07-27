@@ -1,0 +1,30 @@
+{
+  "name": "gses-test-task",
+  "version": "1.0.0",
+  "description": "GSES2 BTC application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolphin323/gses-test-task.git"
+  },
+  "keywords": [],
+  "author": "Yelizaveta Brus",
+  "license": "ISC",
+  "homepage": "https://github.com/dolphin323/gses-test-task#readme",
+  "dependencies": {
+    "@fastify/cors": "^8.0.0",
+    "@sendgrid/mail": "^7.7.0",
+    "dotenv": "^16.0.1",
+    "fastify": "^4.3.0",
+    "node-fetch": "^3.2.9",
+    "qs": "^6.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
