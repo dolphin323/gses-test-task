@@ -27,7 +27,7 @@ app.setNotFoundHandler((req, res) => {
 
 const start = async () => {
   try {
-    await app.listen({ port: ENV.APP.PORT });
+    await app.listen({ port: ENV.APP.PORT, host: ENV.APP.HOST });
   } catch (error) {
     app.log.error(error);
     process.exit(ExitCode.ERROR);

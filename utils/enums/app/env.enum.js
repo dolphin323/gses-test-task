@@ -13,7 +13,8 @@ const {
 const ENV = {
   APP: {
     API_PATH: "/api",
-    PORT: APP_PORT,
+    PORT: APP_PORT ?? 3000,
+    HOST: "0.0.0.0",
   },
   SENDGRID: {
     API_KEY: SENDGRID_API_KEY,
