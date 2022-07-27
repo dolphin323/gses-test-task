@@ -9,6 +9,7 @@ class EmailService {
 
   getEmails() {
     const emails = this.storage.getItems();
+
     return emails;
   }
 
@@ -33,15 +34,21 @@ class EmailService {
 
   async sendMessageToAllEmails({ html, subject }) {
     const emails = this.getEmails();
-    try {
-      emails.forEach(async (item) => {
-        await this.mailRepository.sendMessage(
-          createMail({ html, subject, to: item.email })
-        );
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
+    const failedSendingEmails = [];
+
+    await Promise.all(
+      emails.map(async (item) => {
+        try {
+          await this.mailRepository.sendMessage(
+            createMail({ html, subject, to: item.email })
+          );
+        } catch (error) {
+          failedSendingEmails.push(item.email);
+        }
+      })
+    );
+
+    return failedSendingEmails;
   }
 }
 

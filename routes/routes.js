@@ -18,6 +18,7 @@ const initApi = (
     .get(ApiPath.RATE, async (req, res) => {
       const rateData = await currencyService.getRate({});
       res.status(HttpCode.OK).send(rateData[Currency.UAH]);
+
       return;
     })
     .post(ApiPath.SUBSCRIBE, async (req, res) => {
@@ -26,6 +27,7 @@ const initApi = (
         res
           .status(HttpCode.BAD_REQUEST)
           .send(HttpResponseMessage.WRONG_EMAIL_FORMAT);
+
         return;
       }
 
@@ -39,6 +41,7 @@ const initApi = (
           res.status(HttpCode.INTERNAL_SERVER_ERROR).send(error);
         }
       }
+
       return;
     })
     .post(ApiPath.SEND_EMAILS, async (req, res) => {
@@ -46,12 +49,27 @@ const initApi = (
       const mail = getMailTemplate.currentRate(rateData[Currency.UAH]);
 
       try {
-        await emailService.sendMessageToAllEmails(mail);
+        const failedSendingEmails = await emailService.sendMessageToAllEmails(
+          mail
+        );
+
+        res
+          .status(HttpCode.OK)
+          .send(
+            HttpResponseMessage.EMAILS_SENT +
+              `${
+                failedSendingEmails.length
+                  ? " " +
+                    HttpResponseMessage.EMAILS_FAILED +
+                    " " +
+                    failedSendingEmails.join(",")
+                  : ""
+              }`
+          );
       } catch (error) {
         res.status(HttpCode.INTERNAL_SERVER_ERROR).send(error);
       }
 
-      res.status(HttpCode.OK).send(HttpResponseMessage.EMAILS_SENT);
       return;
     });
 
