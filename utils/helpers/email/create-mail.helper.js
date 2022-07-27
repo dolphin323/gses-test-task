@@ -3,7 +3,10 @@ import { ENV } from "../../enums/enums.js";
 
 const createMail = ({ to, html, subject }) => {
   return {
-    from: ENV.SENDGRID.VERIFIED_SENDER, // Change to your verified sender
+    from: {
+      email: ENV.SENDGRID.VERIFIED_SENDER,
+      name: INITIAL_MAIL.fromName,
+    },
     to: to || ENV.SENDGRID.VERIFIED_SENDER,
     subject: subject || INITIAL_MAIL.subject,
     html: html || INITIAL_MAIL.html,
