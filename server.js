@@ -1,22 +1,31 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
+import swagger from "@fastify/swagger";
 import {
   ExitCode,
   ENV,
   ExceptionMessage,
   HttpCode,
 } from "./utils/enums/enums.js";
-import { emailService, currencyService } from "./services/services.js";
+import { apiController } from "./controllers/controllers.js";
 import { initApi } from "./routes/routes.js";
 
 const app = fastify({ logger: true });
 
 app.register(cors);
 
+app.register(swagger, {
+  routePrefix: "/swagger",
+  mode: "static",
+  specification: {
+    path: "./swagger/swagger.yaml",
+  },
+  exposeRoute: true,
+});
+
 app.register(initApi, {
-  services: {
-    emailService,
-    currencyService,
+  controllers: {
+    apiController,
   },
   prefix: ENV.APP.API_PATH,
 });
