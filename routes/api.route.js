@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import { ApiPath } from "../utils/enums/enums.js";
 import {
   noBodySchema,

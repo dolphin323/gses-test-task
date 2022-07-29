@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "qs": "^6.11.0"
   },
   "devDependencies": {
+    "eslint": "^8.20.0",
     "nodemon": "^2.0.19"
   }
 }
