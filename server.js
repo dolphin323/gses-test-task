@@ -1,6 +1,9 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import swagger from "@fastify/swagger";
+import Ajv from "ajv";
+import AjvErrors from "ajv-errors";
+import addFormats from "ajv-formats";
 import {
   ExitCode,
   ENV,
@@ -9,8 +12,23 @@ import {
 } from "./utils/enums/enums.js";
 import { apiController } from "./controllers/controllers.js";
 import { initApi } from "./routes/routes.js";
+import { errorHandler, validatorCompiler } from "./utils/helpers/helpers.js";
 
-const app = fastify({ logger: true });
+const ajv = new Ajv({ allErrors: true });
+
+AjvErrors(ajv);
+addFormats(ajv);
+
+const app = fastify({
+  logger: true,
+  ajv: { plugins: [AjvErrors, addFormats] },
+});
+
+app.setErrorHandler(errorHandler);
+
+app.setValidatorCompiler(function (schemaDefinition) {
+  return validatorCompiler(schemaDefinition, ajv);
+});
 
 app.register(cors);
 
