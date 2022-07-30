@@ -11,9 +11,6 @@ class CurrencyService {
       ENV.CRYPTO_COMPARE.URL,
       {
         queryParams,
-        headers: {
-          authorization: `Apikey ${ENV.CRYPTO_COMPARE.API_KEY}`,
-        },
       }
     );
 

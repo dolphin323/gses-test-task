@@ -7,7 +7,6 @@ const {
   SENDGRID_API_KEY,
   SENDGRID_VERIFIED_SENDER,
   CRYPTO_COMPARE_URL,
-  CRYPTO_COMPARE_API_KEY,
 } = process.env;
 
 const ENV = {
@@ -22,7 +21,6 @@ const ENV = {
   },
   CRYPTO_COMPARE: {
     URL: CRYPTO_COMPARE_URL,
-    API_KEY: CRYPTO_COMPARE_API_KEY,
   },
 };
 
