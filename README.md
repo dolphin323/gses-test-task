@@ -4,7 +4,7 @@ GSES2 BTC application
 
 # App installation
 
-1. Create `.env` file and copy `.env.example` in it. `.env.example` has valid data for convenient testing.
+1. Create `.env` file and copy `.env.example` in it and change required data.
 2. Run `npm install`
 3. Run `npm run start`
 
