@@ -74,3 +74,5 @@ paths:
       responses:
         "200":
           description: "E-mailʼи відправлено"
+        "401":
+          description: "The provided authorization grant is invalid, expired, or revoked"  

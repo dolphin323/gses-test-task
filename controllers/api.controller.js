@@ -3,6 +3,7 @@ import {
   HttpCode,
   HttpResponseMessage,
   ExceptionMessage,
+  SgMailException,
 } from "../utils/enums/enums.js";
 import { getMailTemplate, validateEmail } from "../utils/helpers/helpers.js";
 
@@ -65,6 +66,12 @@ class ApiController {
             }`
         );
     } catch (error) {
+      if (error?.message === ExceptionMessage.BAD_REQUEST) {
+        res.status(HttpCode.BAD_REQUEST).send(error.message);
+      }
+      if (error?.message === SgMailException.UNAUTHORIZED) {
+        res.status(HttpCode.UNAUTHORIZED).send(error.message);
+      }
       res.status(HttpCode.INTERNAL_SERVER_ERROR).send(error);
     }
 

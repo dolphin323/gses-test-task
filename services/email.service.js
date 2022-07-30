@@ -1,4 +1,8 @@
-import { ExceptionMessage } from "../utils/enums/enums.js";
+import {
+  ExceptionMessage,
+  HttpCode,
+  SgMailException,
+} from "../utils/enums/enums.js";
 import { createMail } from "../utils/helpers/helpers.js";
 
 class EmailService {
@@ -43,10 +47,17 @@ class EmailService {
             createMail({ html, subject, to: item.email })
           );
         } catch (error) {
+          if (error.code === HttpCode.UNAUTHORIZED) {
+            throw new Error(SgMailException.UNAUTHORIZED);
+          }
           failedSendingEmails.push(item.email);
         }
       })
     );
+
+    if (failedSendingEmails.length === emails.length) {
+      throw new Error(ExceptionMessage.BAD_REQUEST);
+    }
 
     return failedSendingEmails;
   }
