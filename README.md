@@ -13,12 +13,10 @@ GSES2 BTC application
 Steps to run app in docker:
 
 1. Pull image:  
-   `docker pull dolphin323/gses-test-task:gses-test-task`
-2. Create image if you **haven't already pulled one**:  
-   `docker build -t dolphin323/gses-test-task:gses-test-task . `
-3. Run container:  
-   `docker run -dp 3000:3000 -v gses-test-task:/server/data --rm --name container-gses-test-task dolphin323/gses-test-task:gses-test-task`
-4. Stop container when you want to stop app running in docker:  
+   `docker pull dolphin323/gses-task:latest`
+2. Run container:  
+   `docker run -dp 3000:3000 -v gses-test-task:/server/data --rm --name container-gses-test-task dolphin323/gses-task:latest`
+3. Stop container when you want to stop app running in docker:  
    `docker stop container-gses-test-task`
 
 # App structure
