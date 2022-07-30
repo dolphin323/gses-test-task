@@ -1,4 +1,4 @@
-import { ExceptionMessage } from "../../enums/enums.js";
+import { ExceptionMessage } from "../../utils/enums/enums.js";
 
 const noQuerySchema = {
   properties: {},

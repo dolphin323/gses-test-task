@@ -2,7 +2,7 @@ import { ApiPath } from "../utils/enums/enums.js";
 import {
   noBodySchema,
   subscribeBodyReqSchema,
-} from "../utils/validation-schemas/validation-schemas.js";
+} from "../validation-schemas/validation-schemas.js";
 
 const initApi = (fastify, { controllers: { apiController } }, done) => {
   fastify

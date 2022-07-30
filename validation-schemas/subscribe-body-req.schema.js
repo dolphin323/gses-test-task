@@ -1,4 +1,4 @@
-import { HttpResponseMessage } from "../enums/enums.js";
+import { HttpResponseMessage } from "../utils/enums/enums.js";
 
 const subscribeBodyReqSchema = {
   type: "object",
