@@ -26,7 +26,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v3   
+        env: 
+            SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+            SENDGRID_VERIFIED_SENDER: ${{ secrets.SENDGRID_VERIFIED_SENDER }}
+            CRYPTO_COMPARE_API_KEY: ${{ secrets.CRYPTO_COMPARE_API_KEY }}
+            CRYPTO_COMPARE_URL: ${{ secrets.CRYPTO_COMPARE_URL }}
         with:
           context: .
           push: true
