@@ -4,7 +4,7 @@ GSES2 BTC application
 
 # App installation
 
-1. Create `.env` file and copy `.env.example` in it. `.env.example` has valid data for convenient testing.
+1. Create `.env` file and copy `.env.example` in it and change required data.
 2. Run `npm install`
 3. Run `npm run start`
 
@@ -15,7 +15,7 @@ Steps to run app in docker:
 1. Pull image:  
    `docker pull dolphin323/gses-task:latest`
 2. Run container:  
-   `docker run -dp 3000:3000 -v gses-test-task:/server/data --rm --name container-gses-test-task dolphin323/gses-task:latest`
+   `docker run --rm -dp 3000:3000 -v gses-test-task:/server/data --env-file .env --name container-gses-test-task --platform linux/amd64 dolphin323/gses-task:latest`
 3. Stop container when you want to stop app running in docker:  
    `docker stop container-gses-test-task`
 
