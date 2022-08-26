@@ -1,3 +1,4 @@
+import { FilePath, ENV } from "../utils/enums/enums.js";
 import {
   HttpRepository,
   JsonStorageRepository,
@@ -5,7 +6,6 @@ import {
 } from "./../repositories/repositories.js";
 import { EmailService } from "./email.service.js";
 import { CurrencyService } from "./currency.service.js";
-import { FilePath, ENV } from "../utils/enums/enums.js";
 
 const emailService = new EmailService(
   new JsonStorageRepository(FilePath.emailsFile),
